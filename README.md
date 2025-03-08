@@ -78,4 +78,9 @@ http://localhost:5050/index.php
 
 ---
 
-With this guide, any user will be able to install and run the project without issues. 🚀
+## 📔 License
+This project is licensed under the [MIT License](./LICENSE).
+
+> [!IMPORTANT]
+This project was developed by: **Victor Sanchez**.
+
