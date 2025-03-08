@@ -1,0 +1,85 @@
+Aquí tienes una breve documentación sobre cómo configurar y ejecutar el proyecto:
+
+---
+
+# 📌 **Documentación del Proyecto: Gestión de Personajes**
+
+## 📂 **Requisitos Previos**
+Antes de ejecutar el proyecto, asegúrate de tener instalado lo siguiente:
+
+- **PHP 7.4+** (Con SQLite habilitado)  
+- **Composer** (Para manejar dependencias como DomPDF)  
+- **Extensiones PHP**: SQLite3, PDO, y GD (para imágenes)  
+- **Servidor Local**: Puedes usar el servidor embebido de PHP o XAMPP/Laragon  
+
+---
+
+## 📥 **Instalación y Configuración**
+### 1️⃣ **Clonar el Proyecto**
+Si el proyecto está en un repositorio, clónalo con:
+```sh
+git clone https://github.com/tu_usuario/tu_repositorio.git
+cd tu_repositorio
+```
+Si lo tienes en un ZIP, simplemente extrae los archivos en una carpeta.
+
+### 2️⃣ **Instalar Dependencias**
+Ejecuta el siguiente comando en la raíz del proyecto para instalar **DomPDF**:
+```sh
+composer install
+```
+Si **Composer** no está instalado, descárgalo desde [getcomposer.org](https://getcomposer.org).
+
+### 3️⃣ **Configurar la Base de Datos**
+- **SQLite** no necesita configuración adicional, pero asegúrate de que el archivo `serie_db.sqlite` existe en la raíz del proyecto.
+- Si no existe, puedes crearlo ejecutando este script en PHP:
+```php
+<?php
+$db = new SQLite3('serie_db.sqlite');
+$db->exec("CREATE TABLE IF NOT EXISTS personajes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    color TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    nivel INTEGER NOT NULL,
+    foto TEXT
+)");
+echo "Base de datos y tabla creadas correctamente.";
+?>
+```
+Guárdalo como `setup_db.php` y ejecútalo con:
+```sh
+php setup_db.php
+```
+
+---
+
+## 🚀 **Ejecución del Proyecto**
+Para iniciar el servidor embebido de PHP en el puerto `5050`, usa:
+```sh
+php -S localhost:5050
+```
+Luego, abre en tu navegador:
+```
+http://localhost:5050/index.php
+```
+
+---
+
+## 🛠 **Funcionalidades Principales**
+- **Agregar Personajes** → Formulario para registrar personajes con imagen.  
+- **Editar Personajes** → Modificar los datos existentes.  
+- **Eliminar Personajes** → Eliminar registros con confirmación.  
+- **Descargar en PDF** → Generar y abrir un perfil en PDF en una nueva pestaña.  
+
+---
+
+## 📝 **Notas Adicionales**
+- En php.init habilitar todo lo que tenga que ver con sqlite
+- Si usas **XAMPP o Laragon**, mueve el proyecto a la carpeta `htdocs` y accede desde `http://localhost/tu_proyecto/`.  
+- Si tienes problemas con imágenes en el PDF, revisa que las rutas sean absolutas o convierte las imágenes a **base64** (ya implementado).  
+- Si necesitas usar MySQL en lugar de SQLite, cambia la configuración en `db_config.php` y crea la base de datos manualmente.  
+
+---
+
+Con esta guía, cualquier usuario podrá instalar y ejecutar el proyecto sin problemas. 🚀
